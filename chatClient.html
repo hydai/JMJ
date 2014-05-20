@@ -1,0 +1,85 @@
+<!DOCTYPE html>  
+<html>  
+    <meta charset='utf-8'>  
+    <head>  
+        <style>  
+            .container {  
+            font-size: 12px;  
+            border-radius: 10px;  
+            border: solid 1px #336699;  
+            padding: 15px 15px 15px 15px;  
+            line-height: 20px;  
+            width: 400px;  
+            }  
+            .disabled {  
+            color: gray;  
+            }  
+            .enabled {  
+            color: true;  
+            }  
+        </style>  
+        <script src='/socket.io/socket.io.js'></script>  
+        <script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>  
+        <script>  
+            $(document).ready(function() {  
+            var socket = io.connect();  
+            var nickname = '';  
+            $('#form1').submit(function(e) {  
+            e.preventDefault();  
+            socket.emit('setnickname', $('#nickname').val());  
+            });  
+            socket.on('nicknamesuccess', function(m) {  
+            nickname = m;  
+            $('#nickname').prop('disabled', true);  
+            $('#sendnickname').prop('disabled', true);  
+            $('#msg').prop('disabled', false).focus();  
+            $('#send').prop('disabled', false);  
+            $('#msglabel').prop('className', 'enabled');  
+            });  
+            socket.on('nicknamefail', function(m) {  
+            alert('Nickname conflict. Your nickname will be changed to "'+m+'"');  
+            nickname = m;  
+            $('#nickname').val(m);  
+            $('#nickname').prop('disabled', true);  
+            $('#sendnickname').prop('disabled', true);  
+            $('#msg').prop('disabled', false).focus();  
+            $('#send').prop('disabled', false);  
+            $('#msglabel').prop('className', 'enabled');  
+            });  
+            $('#form2').submit(function(e) {  
+            e.preventDefault();  
+            var m = $('#msg').val();  
+            socket.emit('post', {nickname: nickname, msg: m});  
+            $('#msg').val('');  
+            updateMsg({nickname:nickname,msg:m});  
+            })  
+            socket.on('msg', function(m) {  
+            console.log('got msg',m);  
+            updateMsg(m);  
+            });  
+            function updateMsg(msg) {  
+            var ta = $("#panel");  
+            var t = new Date();  
+            var s = t.getHours() + ':' + t.getMinutes() + ':' + t.getSeconds();  
+            var m = '[ ' + msg.nickname + ' (' + s + ')]: ' + msg.msg;  
+            ta.val(ta.val()+'\n'+m);  
+            setTimeout(function(){  
+            ta.scrollTop(ta[0].scrollHeight - ta.innerHeight());  
+            },10);  
+            }  
+            $('#msg').focus();  
+            });  
+        </script>  
+    </head>  
+    <body>  
+        <div class="container">  
+            <textarea cols='54' rows='24' id='panel' readonly></textarea><br>  
+            <form id='form1' name='form1'>  
+                <label id='nicknamelabel' class='enabled'>Your Nickname: </label><input type='text' size='20' id='nickname'><input type='submit' value='send' id='sendnickname'>  
+            </form>  
+            <form id='form2' name='form2'>  
+                <label id='msglabel' class='enabled'>Message: </label><input type='text' size='54' id='msg'><input type='submit' value='send' id='send'>  
+            </form>  
+        </div>  
+    </body>  
+</html> 

@@ -11,10 +11,10 @@
 */
 @font-face {
 	font-family:"Monster AG";
-	src:url("../font/Monster_AG/Monster_AG.eot?") format("eot"),
-	url("../font/Monster_AG/Monster_AG.woff") format("woff"),
-	url("../font/Monster_AG/Monster_AG.ttf") format("truetype"),
-	url("../font/Monster_AG/Monster_AG.svg#") format("svg");
+	src:url("font/Monster_AG/Monster_AG.eot?") format("eot"),
+	url("font/Monster_AG/Monster_AG.woff") format("woff"),
+	url("font/Monster_AG/Monster_AG.ttf") format("truetype"),
+	url("font/Monster_AG/Monster_AG.svg#") format("svg");
 	font-weight:normal;font-style:normal;
 }
 
@@ -22,7 +22,7 @@
 
 body {
 	
-	background-image: url(../img/login_bg.png);
+	background-image: url(img/login_bg.png);
 	background-position: bottom right; 
 	background-attachment: fixed;
     background-color:white;

@@ -5,26 +5,16 @@
         <title>JMJ - Japanese MJ</title>
         <!-- Include css and js-->
         <link rel="stylesheet" type="text/css" href="css/login.css">
-        <script src="js/jquery_002.js"></script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.bumpytext.packed.js"></script>
 
-        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/easying.js"></script>
         <script src="js/index.js"></script>
     </head>
     <body>
         <div id="LOGIN">
             <div class="logo">
-                <a class="BACKLOGIN" href="#">
-                    <span style="color:#5d64e2;" class="JMJ">
-                        <span class="bumpy-char">J</span>
-                    </span>
-                    <span style="color:#fc5188;" class="JMJ">
-                        <span style="bottom: 0px;" class="bumpy-char">M</span>
-                    </span>
-                    <span style="color:#5d64e2;" class="JMJ">
-                        <span class="bumpy-char">J</span>
-                    </span>
-                </a>
+                <a class="BACKLOGIN" href="#"><span style="color:#5d64e2;" class="JMJ">J</span><span style="color:#fc5188;" class="JMJ">M</span><span style="color:#5d64e2;" class="JMJ">J</span></a>
             </div>
             <div class="sublogo">
                 <a title="game rule" href="http://www.abstreamace.com/mahjong/">
@@ -35,13 +25,13 @@
                 <form method="post">
                     <div style="text-align:center">
                         <span class="inputTitle">帳號：</span>
-                        <input name="account" class="inputSpace" type="text">
+                        <input name="account" class="inputSpace" type="text" id="LOGINACC">
                         <br>
                         <span class="inputTitle">密碼：</span>
-                        <input name="password" class="inputSpace" type="password">
+                        <input name="password" class="inputSpace" type="password" id="LOGINPWD">
                         <br>
 
-                        <input value="login" class="functButton" type="button">
+                        <input value="login" class="functButton DOLOGIN" type="button">
                         <input value="register" class="functButton GOREGISTER" type="button">
                     </div>
                 </form>
@@ -49,17 +39,7 @@
         </div>
         <div id="REGISTER">
             <div class="logo">
-                <a class="BACKLOGIN" href="#">
-                    <span style="color:#5d64e2;" class="JMJ">
-                        <span class="bumpy-char">J</span>
-                    </span>
-                    <span style="color:#fc5188;" class="JMJ">
-                        <span class="bumpy-char">M</span>
-                    </span>
-                    <span style="color:#5d64e2;" class="JMJ">
-                        <span class="bumpy-char">J</span>
-                    </span>
-                </a>
+                <a class="BACKLOGIN" href="#"><span style="color:#5d64e2;" class="JMJ">J</span><span style="color:#fc5188;" class="JMJ">M</span><span style="color:#5d64e2;" class="JMJ">J</span></a>
             </div>
 
             <div class="room" style="width:480px;  margin:-2.0em 0 0 10%;">

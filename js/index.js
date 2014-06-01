@@ -8,6 +8,7 @@ $(function() {
     $("#ROOM").hide();
     $(".BACKLOGIN").click(function() {
         console.log("BACK");
+        $('body').css({backgroundImage : 'url(css/img/login_bg.png)'});
         $("#LOGIN").show();
         $("#REGISTER").hide();
         $("#UNITY").hide();
@@ -15,6 +16,7 @@ $(function() {
     });
     $(".GOREGISTER").click(function() {
         console.log("GO");
+        $('body').css({backgroundImage : 'url(css/img/login_bg.png)'});
         $("#LOGIN").hide();
         $("#REGISTER").show();
         $("#UNITY").hide();
@@ -22,6 +24,7 @@ $(function() {
     });
     $(".DOLOGIN").click(function() {
         console.log("Log");
+        $('body').css({backgroundImage : 'url(css/img/main_all.png)'});
         $("#LOGIN").hide();
         $("#REGISTER").hide();
         $("#UNITY").hide();

@@ -1,0 +1,60 @@
+@import '//fonts.googleapis.com/css?family=Lato:400,400italic|Arvo:700,400,400italic';
+
+body {
+
+    background-color:white;
+  /*
+    background:radial-gradient(circle, #acacac 10%, #000);
+    background:-webkit-radial-gradient(circle, #acacac 10%, #000);
+    background:-moz-radial-gradient(circle, #acacac 10%, #000);
+    background:-ms-radial-gradient(circle, #acacac 10%, #000);
+    background:-o-radial-gradient(circle, #acacac 10%, #000);
+    background-size:cover;
+    */
+    margin: 0;
+    padding: 0;
+    font: 15px/1.5 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #efefef;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arvo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-weight: normal;
+  text-rendering: optimizelegibility;
+}
+
+h1 {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+h2, h2 a {
+    color: #ccc;
+}
+
+h3, h3 a {
+  color: #bbb;
+}
+
+a {
+  color: #bbb;
+}
+/*
+pre {
+  border:1px solid #000;
+  overflow-x:auto;
+  background: #222;
+  color: #fff;
+  text-shadow: none;
+}
+*/
+
+.wrapper {
+    max-width: 800px;
+    padding: 0 20px 40px 20px;
+   /* margin: auto; */
+    margin: 0px 0px 0 25px;
+}

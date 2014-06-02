@@ -1,20 +1,87 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JMJ - Japanese MJ</title>
         <!-- Include css and js-->
-        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="/css/login.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery.bumpytext.packed.js"></script>
+        <script type="text/javascript" src="/js/jquery.bumpytext.packed.js"></script>
 
-        <script type="text/javascript" src="js/easying.js"></script>
-        <link rel="stylesheet" type="text/css" href="lib/style.css">
-        <link rel="stylesheet" type="text/css" href="lib/jcarousel.responsive.css">
-        <script type="text/javascript" src="lib/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="lib/jcarousel.responsive.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/OAO.css">
-        <script src="js/index.js"></script>
+        <script type="text/javascript" src="/js/easying.js"></script>
+        <link rel="stylesheet" type="text/css" href="/lib/style.css">
+        <link rel="stylesheet" type="text/css" href="/lib/jcarousel.responsive.css">
+        <script type="text/javascript" src="/lib/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="/lib/jcarousel.responsive.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/OAO.css">
+        <link rel="stylesheet" type="text/css" href="/css/display.css">
+        <script type="text/javascript" src="/js/display.js"></script>
+        <script src="/js/displayAPI.js"></script>
+        <script type="text/javascript">
+            <!--
+            var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+            if (document.location.protocol == 'https:')
+            unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+            document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+                -->
+                </script>
+                <script type="text/javascript">
+                    <!--
+                    var config = {
+width: 1050, 
+       height: 600,
+       params: { enableDebugging:"0" }
+
+                    };
+var u = new UnityObject2(config);
+
+jQuery(function() {
+
+        var $missingScreen = jQuery("#unityPlayer").find(".missing");
+        var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+        $missingScreen.hide();
+        $brokenScreen.hide();
+
+        u.observeProgress(function (progress) {
+            switch(progress.pluginStatus) {
+            case "broken":
+            $brokenScreen.find("a").click(function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                u.installPlugin();
+                return false;
+                });
+            $brokenScreen.show();
+            break;
+            case "missing":
+            $missingScreen.find("a").click(function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                u.installPlugin();
+                return false;
+                });
+            $missingScreen.show();
+            break;
+            case "installed":
+            $missingScreen.remove();
+            break;
+            case "first":
+            break;
+            }
+        });
+        u.initPlugin(jQuery("#unityPlayer")[0], "/unity/web_display.unity3d");
+
+        $("#intro").click(function(){
+                u.getUnity().SendMessage("intropic", "GUIappear", "");
+                //hu(2);
+                //IDAction(3, 4, 5, 4, 3);
+                });
+});
+-->
+</script>
+<script type="text/javascript" src="/js/roomAPI.js"></script>
+<script src='/node_modules/socket.io/node_modules/socket.io-client/socket.io.js'></script>  
+<script src="/js/index.js"></script>
     </head>
     <body>
         <div id="LOGIN">
@@ -70,7 +137,7 @@
             </div>
         </div>
         <div id="ROOM" style="margin: 15px;">
-            <div style="text-align:right;"><input type="button" class="functButton" value="logout"></div>
+            <div style="text-align:right;"><input type="button" class="functButton LOGOUT" value="logout"></div>
             <div class="wrapper" style="margin-top:-60px">
 
                 <span class="logo_r" style="display:inline-block;"><span style="color:#5d64e2;" class="JMJ">J</span><span style="color:#fc5188;" class="JMJ">M</span><span style="color:#5d64e2;" class="JMJ">J</span></span>
@@ -79,40 +146,12 @@
                         <th>rank</th>
                         <th>ID</th>
                         <th>rating</th>
-                        <tr ><td>1</td><td>(☉д⊙)</td><td>2147483647</td></tr>
-                        <tr><td>1</td><td>(´⊙ω⊙`)</td><td>win?</td></tr>
-                        <tr><td>1</td><td>(°ཀ°)</td><td>win?</td></tr>
-                        <tr><td>1</td><td>(°ཀ°)</td><td>win?</td></tr>
-                        <tr><td>1</td><td>(°ཀ°)</td><td>win?</td></tr>
-                        <tr><td>1</td><td>(°ཀ°)</td><td>win?</td></tr>
-
                     </table>
-                    (☉д⊙)<br/>
-                    (´⊙ω⊙`)<br/>
-                    (●▼●;)<br/>
-                    (°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>
-                    (°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>(°ཀ°)<br/>
                 </span>
 
                 <div class="jcarousel-wrapper">
                     <div class="jcarousel" data-jcarousel="true">
                         <ul >
-                            <li >
-                            <div class="room_r">OAO</div>
-                            <div class="hp">HP</div>
-                            </li>
-                            <li >
-                            <div class="room_r">(°ཀ°)</div>
-                            <div class="hp">HP(°ཀ°)</div>
-                            </li>
-                            <li >
-                            <div class="room_r">(°ཀ°)</div>
-                            <div class="hp">HP(°ཀ°)</div>
-                            </li>
-                            <li >
-                            <div class="room_r">(°ཀ°)</div>
-                            <div class="hp">HP(°ཀ°)</div>
-                            </li>
 
                         </ul>
                     </div>
@@ -120,13 +159,33 @@
                     <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true">‹</a>
                     <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true">›</a>
 
-
-                    <p class="jcarousel-pagination" data-jcarouselpagination="true">
-                    </p>
-
-
                 </div>
             </div> 
+        </div>
+        <div id="MYUNITY" style="margin: 15px;">
+            <div id = "currentScore"><div id="show" >scoreboard</div>
+                <!--好像要一樣多行才不會不整齊-->
+                <div id ="count">東??局<br/></br>z</div>
+                <div class ="player" id="player1">Player1<br/>第一位<br/>點???</div>
+                <div class ="player" id="player2">Player2<br/>第二位<br/>點???</div>
+                <div class ="player" id="player3">Player3<br/>第三位<br/>點???</div>
+                <div class ="player" id="player4">Player4<br/>第四位<br/>點???</div>
+                <div id="intro">遊戲說明</div>
+            </div>
+            <div class="content">
+                <div id="unityPlayer">
+                    <div class="missing">
+                        <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+                            <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+                        </a>
+                    </div>
+                    <div class="broken">
+                        <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+                            <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

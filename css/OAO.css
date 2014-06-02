@@ -1,7 +1,7 @@
 .bg_all{
-	background-image: url('img/main_all.png');
-	background-position: bottom right; 
-	background-attachment: fixed;
+    background-image: url('img/main_all.png');
+    background-position: bottom right; 
+    background-attachment: fixed;
     background-color:#fff;
     background-repeat:no-repeat;
     background-size:contain;
@@ -12,9 +12,9 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 .bg_saki{
-	background-image: url('img/main_saki.png');
-	background-position: bottom right; 
-	background-attachment: fixed;
+    background-image: url('img/main_saki.png');
+    background-position: bottom right; 
+    background-attachment: fixed;
     background-color:transparent;
     background-repeat:no-repeat;
     background-size:contain;
@@ -26,93 +26,138 @@
 }
 .logo_r{
 
-	text-align: left;
-	margin-left:0.3em;
-	font-family:"Monster AG";
-	font-size:10.5em;
-	font-weight:bold;
-	
+    text-align: left;
+    margin-left:0.3em;
+    font-family:"Monster AG";
+    font-size:10.5em;
+    font-weight:bold;
+
 }
 .rank{
-	overflow: auto;
-	padding:5px;
-	/*
-	background-color:rgba(255, 210, 224, 0.8);
-	*/
-	color:#464646;
-	position:absolute;
-	top:60px;
+    overflow: auto;
+    padding:5px;
+    /*
+    background-color:rgba(255, 210, 224, 0.8);
+     */
+    color:#464646;
+    position:absolute;
+    top:60px;
 
-	margin-left:100px;
-	display:inline-block;
+    margin-left:100px;
+    display:inline-block;
     /* width:400px; */
-	height:150px;
-	border:none;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-ms-border-radius:5px;
-	-o-border-radius:5px;
-	/*
-	box-shadow: 0px 0px 5px #ababab;
-	*/
+    height:150px;
+    border:none;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -ms-border-radius:5px;
+    -o-border-radius:5px;
+    /*
+    box-shadow: 0px 0px 5px #ababab;
+     */
 }
 /*
 .rank:hover{
-	background-color:rgba(255, 210, 224, 1);
+background-color:rgba(255, 210, 224, 1);
 }
-*/
-#ROOM th{
-	font: 15px/1.5 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    
-	color:#fff;
-	background-color: #fc5188;/*fc5188*/
-}
-#ROOM table.box{
-	text-align: center;
-	background-color:rgba(255, 236, 242, 1);
-	width:200px;
-	border:1px solid rgba(240, 189, 186, 1);
-}
-.room_r{
-	padding:5px;
-	background-color:rgba(255, 236, 242, 0.8);
-	color:#464646;
-	
-	height:250px;
-	border:none;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-ms-border-radius:5px;
-	-o-border-radius:5px;
-	box-shadow: 0px 0px 5px #ababab;
-}
-.room_r:hover{
-	background-color:rgba(255, 236, 242, 1);
-}
-.hp{
-	padding:5px;
-	background-color:rgba(255, 236, 242, 0.8);
-	color:#464646;
-	margin-top:5px;
-	height:40px;
-	border:none;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	-ms-border-radius:5px;
-	-o-border-radius:5px;
-	box-shadow: 0px 0px 5px #ababab;
-}
-.hp:hover{
-	background-color:rgba(255, 236, 242, 1);
+ */
+    #ROOM th{
+        font: 15px/1.5 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-}
-#ROOM .functButton:active{
-	background-color:#fc5188;
+        color:#fff;
+        background-color: #fc5188;/*fc5188*/
+    }
+    #ROOM table.box{
+        text-align: center;
+        background-color:rgba(255, 236, 242, 1);
+        width:200px;
+        border:1px solid rgba(240, 189, 186, 1);
+    }
+    .room_r{
+        padding:5px;
+        background-color:rgba(255, 236, 242, 0.8);
+        color:#464646;
 
-	box-shadow: none;
-	position: relative;
-	top:27px;
-}
+        height:250px;
+        border:none;
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -ms-border-radius:5px;
+        -o-border-radius:5px;
+        box-shadow: 0px 0px 5px #ababab;
+    }
+    .room_r:hover{
+        background-color:rgba(255, 236, 242, 1);
+    }
+    .hp{
+        padding:5px;
+        background-color:rgba(255, 236, 242, 0.8);
+        color:#464646;
+        margin-top:5px;
+        height:40px;
+        border:none;
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -ms-border-radius:5px;
+        -o-border-radius:5px;
+        box-shadow: 0px 0px 5px #ababab;
+    }
+    .hp:hover{
+        background-color:rgba(255, 236, 242, 1);
+
+    }
+    .hpLine{
+        background-color:rgba(252, 81, 136, 0.7);
+        display:inline-block;
+        margin-left:1%;
+        width:24%;
+        height:100%;
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -ms-border-radius:5px;
+        -o-border-radius:5px;
+    }
+    .hpLine:hover{
+        background-color:rgba(252, 81, 136, 1);
+    }
+    .hpFull{
+        background-color:rgba(93, 100, 226, 0.7);
+        display:inline-block;
+        margin-left:1%;
+        width:24%;
+        height:100%;
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -ms-border-radius:5px;
+        -o-border-radius:5px;
+    }
+    .hpFull:hover{
+        background-color:rgba(93, 100, 226, 1);
+    }
+    .playerName{
+
+        background-color: rgba(247, 213, 213, 0.6);
+        color:#8d3255;
+        font-size: 1.5em;
+        padding: 3px;
+        border-radius:5px;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -ms-border-radius:5px;
+        -o-border-radius:5px;
+    }
+    .playerName:hover{
+        background-color: rgba(247, 213, 213, 1);
+    }
+    #ROOM .functButton:active{
+        background-color:#fc5188;
+
+        box-shadow: none;
+        position: relative;
+        top:7px;
+    }

@@ -285,15 +285,31 @@ jQuery(function() {
             </div> 
         </div>
         <div id="MYUNITY" style="margin: 15px;">
-            <div id = "currentScore"><div id="show" >scoreboard</div>
-                <!--好像要一樣多行才不會不整齊-->
-                <div id ="count">東??局<br/></br>z</div>
-                <div class ="player" id="player1">Player1<br/>第一位<br/>點???</div>
-                <div class ="player" id="player2">Player2<br/>第二位<br/>點???</div>
-                <div class ="player" id="player3">Player3<br/>第三位<br/>點???</div>
-                <div class ="player" id="player4">Player4<br/>第四位<br/>點???</div>
-                <div id="intro">遊戲說明</div>
-            </div>
+		<div id = "currentScore">
+			<div id ="show">scoreboard</div>
+			<div id ="count">
+				<p id="round">東 1 局</p>
+				<p id="MJLeft">70</p>
+			</div>
+			<div class ="player" id="player1">
+				<p id="P1">Player1<span id="P1_state"></span></p>
+				<p>分數: <span id="P1_score">0</span> 點</p>
+			</div>
+			<div class ="player" id="player2">
+				<p id="P2">Player2<span id="P2_state"></span></p>
+				<p>分數: <span id="P2_score">0</span> 點</p>
+			</div>
+			<div class ="player" id="player3">
+				<p id="P3">Player3<span id="P3_state"></span></p>
+				<p>分數: <span id="P3_score">0</span> 點</p>
+			</div>
+			<div class ="player" id="player4">
+				<p id="P4">Player4<span id="P4_state"></span></p>
+				<p>分數: <span id="P4_score">0</span> 點</p>
+
+			</div>
+			<div id="intro">遊戲說明</div>
+		</div>
             <div class="content">
                 <div id="unityPlayer">
                     <div class="missing">

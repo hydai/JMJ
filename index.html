@@ -23,8 +23,7 @@
                 lastCard = -1;
                 // 自摸
                 function playerTsumo() {
-                    console.log("playerPopCard: "+num);
-                    socket.emit('popCard', num);
+                    //socket.emit('ron', canDoActor, lastCard);
                 }
                 // 胡別人牌
                 function playerRon() {
@@ -38,7 +37,7 @@
                 // 碰牌，把三張牌用 array 的方式傳出（因為可能有多組能碰的牌）
                 function playerPon(num) {
                     console.log("playerPopCard: "+num);
-                    socket.emit('popCard', num);
+                    //socket.emit('popCard', num);
                 }
                 // 槓牌，把四張牌用 array 的方式傳出（因為可能有多組能開槓的牌）
                 function playerKan(num) {
@@ -166,8 +165,8 @@ jQuery(function() {
                     //FIXME
                     if (arr.canDo[i] == "tsumo") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
-                        } else {
-                        socket.emit('loadFinished', "");
+                    /*    } else {
+                        socket.emit('loadFinished', "");*/
                     }
                     }
                 }
@@ -175,48 +174,50 @@ jQuery(function() {
         socket.on('popCard', function(arr) {  
                 console.log('userPopCard: '+arr.pai);
                 lastCard = arr.pai;
-                if (arr.canDo.length < 1) {
+                /*if (arr.canDo.length < 1) {
+                    socket.emit('loadFinished', "");
+                    }*/
+                if (arr.actor==0) {
                     socket.emit('loadFinished', "");
                 }
-                if (arr.actor==1) {
+                else if (arr.actor==1) {
                     u.getUnity().SendMessage("Main Camera", "Player2Throw", arr.pai);
-                    var tmpBoolCt = 0;
+                    canDoActor = -1;
                     for (i = 0; i < arr.canDo.length; i++) {
                     //FIXME
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 1;
-                        } else if (arr.canDo[i] == "pon") {
-                        u.getUnity().SendMessage("Main Camera", "pongButtonON", "");
-                        canDoActor = 1;
-                        } else {
-                        tmpBoolCt++;
                         }
                     }
-                    if (tmpBoolCt == arr.canDo.length) {
+                    if (canDoActor == -1) {
                         socket.emit('loadFinished', "");
                     }
                 } else if (arr.actor==2) {
                     u.getUnity().SendMessage("Main Camera", "Player3Throw", arr.pai);
+                    canDoActor = -1;
                     for (i = 0; i < arr.canDo.length; i++) {
                     //FIXME
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 2;
-                        } else {
-                        socket.emit('loadFinished', "");
+                        }
                     }
+                    if (canDoActor == -1) {
+                        socket.emit('loadFinished', "");
                     }
                 } else if (arr.actor==3) {
                     u.getUnity().SendMessage("Main Camera", "Player4Throw", arr.pai);
+                    canDoActor = -1;
                     for (i = 0; i < arr.canDo.length; i++) {
                     //FIXME
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 3;
-                        } else {
-                        socket.emit('loadFinished', "");
+                        }
                     }
+                    if (canDoActor == -1) {
+                        socket.emit('loadFinished', "");
                     }
                 }
                 });  

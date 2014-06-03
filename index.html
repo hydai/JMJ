@@ -15,7 +15,6 @@
         <script type="text/javascript" src="/lib/jcarousel.responsive.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/OAO.css">
         <link rel="stylesheet" type="text/css" href="/css/display.css">
-        <script src="/js/displayAPI.js"></script>
         <script type="text/javascript" src="/js/display.js"></script>
         <script type="text/javascript" language="javascript">
             <!--
@@ -148,8 +147,11 @@ jQuery(function() {
                 console.log('got msg: '+m);  
                 });  
         socket.on('ron', function(arr) {  
-                console.log('got ron: '+arr);
-
+                console.log('got ron: '+JSON.stringify(arr));
+                for (i = 0; i < 4; i++) {
+                    changeScore(i+1, arr.deltas[i]);
+                }
+                u.getUnity().SendMessage("Main Camera", "huButtonOFF", "");
                 });  
         socket.on('getCard', function(arr) {  
                 console.log('getCard: '+arr.pai);
@@ -165,7 +167,7 @@ jQuery(function() {
                 }
                 });  
         socket.on('popCard', function(arr) {  
-                console.log('getCard: '+arr.pai);
+                console.log('userPopCard: '+arr.pai);
                 lastCard = arr.pai;
                 if (arr.canDo.length < 1) {
                     socket.emit('loadFinished', "");
@@ -177,7 +179,9 @@ jQuery(function() {
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 1;
-                    }
+                        } else {
+                        socket.emit('loadFinished', "");
+                        }
                     }
                 } else if (arr.actor==2) {
                     u.getUnity().SendMessage("Main Camera", "Player3Throw", arr.pai);
@@ -186,6 +190,8 @@ jQuery(function() {
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 2;
+                        } else {
+                        socket.emit('loadFinished', "");
                     }
                     }
                 } else if (arr.actor==3) {
@@ -195,6 +201,8 @@ jQuery(function() {
                     if (arr.canDo[i] == "ron") {
                         u.getUnity().SendMessage("Main Camera", "huButtonON", "");
                         canDoActor = 3;
+                        } else {
+                        socket.emit('loadFinished', "");
                     }
                     }
                 }

@@ -51,13 +51,17 @@ io.on('connection', function(socket){
         console.log(gactor + "  " + lastCard);
         var jsonStr = JSON.stringify({type:"ron", actor: myUsernum, target: (myUsernum+gactor)%4, pai:lastCard});
         var result = table.exec(jsonStr);
+        console.log("ron result: "+JSON.stringify(result));
+        for (i = 0; i < 4; i++) {
+            sendCMD('ron', result, i);
+        }
     });
     socket.on('popCard', function(num) {
         console.log("popCard: "+num);
         var jsonStr = JSON.stringify({type:"dahai", actor: myUsernum, pai:num});
         var result = table.exec(jsonStr);
         for (i = 0; i < 4; i++) {
-            sendCMD('ron', result, i);
+            sendCMD('popCard', result, i);
         }
     });
     socket.on('loadFinished', function() {
@@ -244,7 +248,7 @@ function JMJTilePool(tile_size) {
 	for (var i = 0; i < tile_size; i++)
 		this.pool.push(i);
 	//debugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebug
-	//this.pool.shuffle();
+	this.pool.shuffle();
 	//debugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebugdebug
 }
 

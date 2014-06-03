@@ -37,6 +37,7 @@ function IDAction(name1, name2, name3, player, Frplayer){
 	});
 }
 function changeScore(player, score){
+    console.log("Change score: "+player+" "+score);
 	$(function(){
 		if(player == 1) document.getElementById("P1_score").innerHTML= score;
 		else if(player == 2) document.getElementById("P2_score").innerHTML= score;

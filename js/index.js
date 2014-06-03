@@ -1,13 +1,4 @@
 $(function() {
-    /* For nodejs and socket io */
-    var socket = io.connect('');  
-    var nickname = '';  
-    socket.on('gameStart', function(m) {  
-        console.log(m);
-    });  
-    socket.on('msg', function(m) {  
-        console.log('got msg',m);  
-    });  
     /* For bumpy title JMJ */
     $(".JMJ").bumpyText();
     /* For scoreboard toggle */

@@ -15,27 +15,73 @@
         <script type="text/javascript" src="/lib/jcarousel.responsive.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/OAO.css">
         <link rel="stylesheet" type="text/css" href="/css/display.css">
-        <script type="text/javascript" src="/js/display.js"></script>
         <script src="/js/displayAPI.js"></script>
-        <script type="text/javascript">
+        <script type="text/javascript" src="/js/display.js"></script>
+        <script type="text/javascript" language="javascript">
             <!--
+
+                canDoActor = -1;
+                lastCard = -1;
+                // 自摸
+                function playerTsumo() {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                // 胡別人牌
+                function playerRon() {
+                    socket.emit('ron', canDoActor, lastCard);
+                }
+                // 吃牌，把三張牌用 array 的方式傳出（因為可能有多組能吃的牌）
+                function playerChii(num) {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                // 碰牌，把三張牌用 array 的方式傳出（因為可能有多組能碰的牌）
+                function playerPon(num) {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                // 槓牌，把四張牌用 array 的方式傳出（因為可能有多組能開槓的牌）
+                function playerKan(num) {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                // 出牌，num 為丟出的牌
+                function playerPopCard(num) {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                // 立直，這裡的 num 為他丟出去的那張牌
+                function playerRiichi(num) {
+                    console.log("playerPopCard: "+num);
+                    socket.emit('popCard', num);
+                }
+                function callbackLog(m) {
+                    console.log("Callback: "+m);
+                }
+            -->
+        </script>
+        <script type="text/javascript" language="javascript">
+
             var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
             if (document.location.protocol == 'https:')
             unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
             document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
-                -->
-                </script>
-                <script type="text/javascript">
-                    <!--
-                    var config = {
+            </script>
+            <script type="text/javascript">
+                var config = {
 width: 1050, 
        height: 600,
        params: { enableDebugging:"0" }
 
-                    };
+                };
 var u = new UnityObject2(config);
 
 jQuery(function() {
+        function callbackLog(m) {
+        console.log("Callback: "+m);
+        }
+
 
         var $missingScreen = jQuery("#unityPlayer").find(".missing");
         var $brokenScreen = jQuery("#unityPlayer").find(".broken");
@@ -73,12 +119,88 @@ jQuery(function() {
 
         $("#intro").click(function(){
                 u.getUnity().SendMessage("intropic", "GUIappear", "");
-                //hu(2);
-                //IDAction(3, 4, 5, 4, 3);
                 });
+        /* For nodejs and socket io */
+        socket = io.connect('');  
+        socket.on('gameStart', function(m) {  
+                console.log(m);
+                $(".LOGOUT").click();
+                });  
+        socket.on('startGame', function(arr) {
+                console.log(arr);
+                setTimeout( function() {
+                    console.log("Done.");
+                    }, 10000);
+                setTimeout( function() {
+                    var arr_str = JSON.stringify(arr.hand);
+                    arr_str = arr_str.substr(1);
+                    arr_str = arr_str.substring(0, arr_str.length-1);
+                    console.log(arr_str);
+                    u.getUnity().SendMessage("Main Camera", "startGame", arr_str);
+                    u.getUnity().SendMessage("Main Camera", "addBouCard", arr.dora);
+                    }, 10000);
+                setTimeout( function() {
+                    socket.emit('loadFinished', "");
+                    console.log('loadDone');
+                    }, 12000);
+                });
+        socket.on('msg', function(m) {  
+                console.log('got msg: '+m);  
+                });  
+        socket.on('ron', function(arr) {  
+                console.log('got ron: '+arr);
+
+                });  
+        socket.on('getCard', function(arr) {  
+                console.log('getCard: '+arr.pai);
+                if (arr.pai != -1) {
+                    u.getUnity().SendMessage("Main Camera", "getCard", arr.pai);
+                    console.log('Arr canDo: '+arr);
+                    for (i = 0; i < arr.canDo.length; i++) {
+                    //FIXME
+                    if (arr.canDo[i] == "tsumo") {
+                        u.getUnity().SendMessage("Main Camera", "huButtonON", "");
+                    }
+                    }
+                }
+                });  
+        socket.on('popCard', function(arr) {  
+                console.log('getCard: '+arr.pai);
+                lastCard = arr.pai;
+                if (arr.canDo.length < 1) {
+                    socket.emit('loadFinished', "");
+                }
+                if (arr.actor==1) {
+                    u.getUnity().SendMessage("Main Camera", "Player2Throw", arr.pai);
+                    for (i = 0; i < arr.canDo.length; i++) {
+                    //FIXME
+                    if (arr.canDo[i] == "ron") {
+                        u.getUnity().SendMessage("Main Camera", "huButtonON", "");
+                        canDoActor = 1;
+                    }
+                    }
+                } else if (arr.actor==2) {
+                    u.getUnity().SendMessage("Main Camera", "Player3Throw", arr.pai);
+                    for (i = 0; i < arr.canDo.length; i++) {
+                    //FIXME
+                    if (arr.canDo[i] == "ron") {
+                        u.getUnity().SendMessage("Main Camera", "huButtonON", "");
+                        canDoActor = 2;
+                    }
+                    }
+                } else if (arr.actor==3) {
+                    u.getUnity().SendMessage("Main Camera", "Player4Throw", arr.pai);
+                    for (i = 0; i < arr.canDo.length; i++) {
+                    //FIXME
+                    if (arr.canDo[i] == "ron") {
+                        u.getUnity().SendMessage("Main Camera", "huButtonON", "");
+                        canDoActor = 3;
+                    }
+                    }
+                }
+                });  
 });
--->
-</script>
+        </script>
 <script type="text/javascript" src="/js/roomAPI.js"></script>
 <script src='/node_modules/socket.io/node_modules/socket.io-client/socket.io.js'></script>  
 <script src="/js/index.js"></script>

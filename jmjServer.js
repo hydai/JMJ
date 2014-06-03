@@ -73,6 +73,7 @@ io.on('connection', function(socket){
             var result = table.exec(jsonStr);
             for (i = 0; i < 4; i++) {
                 sendCMD('getCard', result, i);
+                users[userArray[i]].emit('remainCards', table.tile_remain);
             }
             finishedCounter = 0;
         }

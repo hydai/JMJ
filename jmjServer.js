@@ -46,6 +46,15 @@ io.on('connection', function(socket){
         console.log(m);
         socket.broadcast.emit('msg', m);
     });
+    socket.on('playerPon', function(m, gactor, lastCard) {
+        console.log("playerPon"+m);
+        m = '['+m+']';
+        var jsonStr = JSON.stringify({type:"pon", actor: myUsernum, target: (myUsernum+gactor)%4, pai:lastCard, consumed:JSON.parse(m)});
+        var result = table.exec(jsonStr);
+        for (i = 0; i < 4; i++) {
+            sendCMD('consumedPon', result, i);
+        }
+    });
     socket.on('ron', function(gactor, lastCard) {
         console.log(gactor + "  " + lastCard);
         var jsonStr = JSON.stringify({type:"ron", actor: myUsernum, target: (myUsernum+gactor)%4, pai:lastCard});

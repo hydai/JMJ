@@ -23,8 +23,7 @@
                 lastCard = -1;
                 // 自摸
                 function playerTsumo() {
-                    console.log("playerPopCard: "+num);
-                    socket.emit('popCard', num);
+                    socket.emit('ron', canDoActor, lastCard);
                 }
                 // 胡別人牌
                 function playerRon() {
@@ -38,7 +37,7 @@
                 // 碰牌，把三張牌用 array 的方式傳出（因為可能有多組能碰的牌）
                 function playerPon(num) {
                     console.log("playerPopCard: "+num);
-                    socket.emit('popCard', num);
+                    socket.emit('playerPon', num, gactor, lastCard);
                 }
                 // 槓牌，把四張牌用 array 的方式傳出（因為可能有多組能開槓的牌）
                 function playerKan(num) {
@@ -145,6 +144,10 @@ jQuery(function() {
                 });
         socket.on('msg', function(m) {  
                 console.log('got msg: '+m);  
+                });  
+        socket.on('consumePon', function(m) {  
+                IDAction(Math.floor(m.pai/4), Math.floor(m.pai/4), Math.floor(m.pai/4), m.actor+1, m.target+1);
+                console.log('consumePon'+JSON.stringify(m));
                 });  
         socket.on('remainCards', function(arr) {  
                 console.log('got remain: '+arr);

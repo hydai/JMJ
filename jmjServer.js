@@ -55,6 +55,14 @@ io.on('connection', function(socket){
         for (i = 0; i < 4; i++) {
             sendCMD('ron', result, i);
         }
+        var result = table.initGame();
+        console.log(JSON.stringify(result));
+        socket.broadcast.emit('gameStart', "Start!");
+        socket.emit('gameStart', "Self");
+
+        for (i = 0; i < 4; i++) {
+            sendCMD('startGame', result, i);
+        }
     });
     socket.on('popCard', function(num) {
         console.log("popCard: "+num);
@@ -85,7 +93,7 @@ io.on('connection', function(socket){
     });
 });
 
-http.listen(3000, function(){
+http.listen(3001, function(){
     console.log('listening on *:3000');
 });
 

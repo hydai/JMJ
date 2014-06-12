@@ -155,6 +155,7 @@ jQuery(function() {
                     changeScore(i+1, arr.deltas[i]);
                 }
                 u.getUnity().SendMessage("Main Camera", "huButtonOFF", "");
+                u.getUnity().SendMessage("Main Camera", "reset", "");
                 });  
         socket.on('getCard', function(arr) {  
                 console.log('getCard: '+arr.pai);

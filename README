@@ -1,0 +1,10 @@
+JMJ - Japanese Mah-Jong
+---
+JMJ is an online multi-player japanese mahjong game.
+
+Tech:
+* Node.js
+* socket.io
+* Unity
+
+It is still in developing.
